@@ -6,7 +6,7 @@ Question : Write a program to create three child processes. The parent should
            wait for a particular child (use waitpid system call).
 Date: 30th - Aug - 2024
 
-Output: (Changes in file_1)
+Output: 
 Child I created...
 Child I before 5 sec sleep
 Child II created...
