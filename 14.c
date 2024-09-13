@@ -17,24 +17,24 @@ Type: FIFO (named pipe)
 ============================================================================
 */
 
-#include <stdio.h>
-#include <sys/stat.h>
-#include <stdlib.h>
+#include <stdio.h> // printf, fprintf
+#include <sys/stat.h> // Import for the `stat` structure and macros for checking file types
+#include <stdlib.h> // Import for standard library functions like exit and EXIT_FAILURE
 
 void print_file_type(struct stat fileStat) {
-    if (S_ISREG(fileStat.st_mode)) {
+    if (S_ISREG(fileStat.st_mode)) { // S_ISREG checks if it's a regular file
         printf("Regular file\n");
-    } else if (S_ISDIR(fileStat.st_mode)) {
+    } else if (S_ISDIR(fileStat.st_mode)) { // S_ISDIR checks if it's a directory
         printf("Directory\n");
-    } else if (S_ISLNK(fileStat.st_mode)) {
+    } else if (S_ISLNK(fileStat.st_mode)) { // S_ISLNK checks if it's a symbolic link
         printf("Symbolic link\n");
-    } else if (S_ISCHR(fileStat.st_mode)) {
+    } else if (S_ISCHR(fileStat.st_mode)) { // S_ISCHR checks if it's a character device file (used for devices like terminals)
         printf("Character device\n");
-    } else if (S_ISBLK(fileStat.st_mode)) {
+    } else if (S_ISBLK(fileStat.st_mode)) { // S_ISBLK checks if it's a block device file (used for devices like hard drives)
         printf("Block device\n");
-    } else if (S_ISFIFO(fileStat.st_mode)) {
+    } else if (S_ISFIFO(fileStat.st_mode)) { // S_ISFIFO checks if it's a FIFO (named pipe)
         printf("FIFO (named pipe)\n");
-    } else if (S_ISSOCK(fileStat.st_mode)) {
+    } else if (S_ISSOCK(fileStat.st_mode)) { // S_ISSOCK checks if it's a socket (used for inter-process communication)
         printf("Socket\n");
     } else {
         printf("Unknown file type\n");
