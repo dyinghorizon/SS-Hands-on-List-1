@@ -21,7 +21,7 @@ Child
 #include <stdlib.h> // For exit
 
 int main(int argc, char *argv[]) {
-    FILE *file;
+    FILE *file; //Declare a pointer to a FILE object
     char buffer[1024];
 
     // Check if the filename is provided
@@ -38,6 +38,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Read the file line by line and display each line
+    // fgets reads one line at a time into the buffer until end of file (EOF) or error occurs
     while (fgets(buffer, sizeof(buffer), file) != NULL) {
         printf("%s", buffer);
     }
