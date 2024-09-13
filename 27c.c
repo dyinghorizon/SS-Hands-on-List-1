@@ -7,7 +7,6 @@ Date: 31nd - Aug - 2024
 
 Output: 
 nishad@nishad-ROG-Zephyrus-G14-GA401QM-GA401QM:~/Desktop/Hand_On_List_1$ ./27a
-============OUTPUT USING execle===============
 -rw-rw-r-- 2 nishad nishad 111 Aug 30 14:59 ./file_1
 ============================================================================
 */
@@ -21,8 +20,9 @@ void main()
     char *options = "-Rl";
     char *file_arg = "./sample-files"; // Set if you want to execute `ls` command on a particular file
 
-    printf("============OUTPUT USING execle===============\n");
     execle(command_path, command_path, options, file_arg, NULL, NULL);
     printf("\n");
 }
 
+//execle is like execl, but it allows you to specify a custom environment (envp) for the new process. 
+//This is useful if you want the new program to have a different set of environment variables.
