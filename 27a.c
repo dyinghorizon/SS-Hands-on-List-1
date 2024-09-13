@@ -19,7 +19,7 @@ nishad@nishad-ROG-Zephyrus-G14-GA401QM-GA401QM:~/Desktop/Hand_On_List_1$ ./27a
 void main()
 {
     char *command_path = "/bin/ls";
-    char *options = "-l";
+    char *options = "-Rl";
     char *file_arg = "./file_1"; // Set if you want to execute `ls` command on a particular file
 
     
