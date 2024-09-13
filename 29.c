@@ -17,12 +17,12 @@ Current Scheduling Policy: SCHED_RR
 ============================================================================
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <sched.h>
-#include <unistd.h>
-#include <string.h>
-#include <errno.h>
+#include <stdio.h> // For standard input and output functions like printf
+#include <stdlib.h> // For general utilities like exit
+#include <sched.h> // For scheduling functions and constants
+#include <unistd.h> 
+#include <string.h> // For string handling functions
+#include <errno.h> // For error handling
 
 void print_policy(int policy) {
     switch (policy) {
@@ -80,6 +80,7 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
+    // sched_getscheduler(0) retrieves the scheduling policy of the current process (0 refers to the current process).
     // Confirm the new policy
     policy = sched_getscheduler(0);
     if (policy == -1) {
