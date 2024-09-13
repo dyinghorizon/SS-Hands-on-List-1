@@ -18,8 +18,11 @@ Data is available now.
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <sys/select.h>
-#include <sys/time.h>
+#include <sys/select.h> // For `select` system call and file descriptor set macros
+#include <sys/time.h> // For `struct timeval` to specify the timeout
+
+//select() is a system call used to monitor multiple file descriptors (e.g., sockets, files, or stdin) 
+//to see if they are ready for I/O operations like reading, writing, or exceptional conditions.
 
 int main() {
     fd_set readfds;
