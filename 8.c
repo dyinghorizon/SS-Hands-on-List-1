@@ -17,34 +17,41 @@ Child
 ============================================================================
 */
 
-#include <stdio.h>  // For fopen, fgets, printf, fclose
-#include <stdlib.h> // For exit
+#include <sys/types.h>  // Import for the `open` system call and type definitions like `mode_t`.
+#include <sys/stat.h>   // Import for the `open` system call which uses flags like `O_RDONLY`.
+#include <fcntl.h>      // Import for file control options, such as `O_RDONLY`.
+#include <unistd.h>     // Import for `read`, `write`, and `close` system calls.
+#include <stdio.h>      // Import for standard I/O functions like `printf` and `perror`.
 
-int main(int argc, char *argv[]) {
-    FILE *file; //Declare a pointer to a FILE object
-    char buffer[1024];
+void main(int argc, char *argv[]) {
+    char *filename;      // Pointer to hold the file name provided as the argument.
+    int fileDescriptor;  
+    char buffer[1];      // Buffer of size 1 to read one character at a time.
 
-    // Check if the filename is provided
     if (argc != 2) {
-        printf("Usage: ./readfile file_1\n");
-        exit(1);
+        // If not, print an error message.
+        printf("Pass the file to be read as the argument\n");
+    } 
+    else {
+        filename = argv[1];  
+        fileDescriptor = open(filename, O_RDONLY);
+
+        if (fileDescriptor == -1) {
+            perror("Error while opening the file!");
+        } 
+        else {
+            while (read(fileDescriptor, buffer, 1) == 1) {
+                // Check if the character read is a newline (`\n`).
+                if (buffer[0] == '\n') {
+                    // If it's a newline, write a newline to the terminal.
+                    write(STDOUT_FILENO, "\n", 1);  
+                } else {
+                    // Otherwise, write the character read from the file to the terminal.
+                    write(STDOUT_FILENO, buffer, 1);
+                }
+            }
+            
+            close(fileDescriptor);
+        }
     }
-
-    // Open the file in read-only mode
-    file = fopen(argv[1], "r");
-    if (file == NULL) {
-        perror("Error opening file");
-        exit(1);
-    }
-
-    // Read the file line by line and display each line
-    // fgets reads one line at a time into the buffer until end of file (EOF) or error occurs
-    while (fgets(buffer, sizeof(buffer), file) != NULL) {
-        printf("%s", buffer);
-    }
-
-    // Close the file
-    fclose(file);
-
-    return 0;
 }
