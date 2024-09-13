@@ -12,9 +12,9 @@ Time taken : 25113
 ============================================================================
 */
 
-#include <sys/types.h> 
-#include <unistd.h>    
-#include <stdio.h>     
+#include <sys/types.h> //getpid()
+#include <unistd.h>    //getpid()
+#include <stdio.h>     //printf
 
 // The following part handles the import of the `__rdtsc()` function based on the compiler being used.
 #ifdef _MSC_VER
