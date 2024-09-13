@@ -12,11 +12,14 @@ Date: 14th - Aug - 2024
 #include <stdio.h>  // For printf
 #include <unistd.h> // For environ
 
+// Declare `environ` as an external global variable, which stores environment variables
 extern char **environ;
 
 int main() {
+    // Pointer to traverse the list of environment variables       
     char **env = environ;
-    
+
+    // Loop through the environment variables until we hit a NULL pointer (end of the list)
     while (*env) {
         printf("%s\n", *env);
         env++;
